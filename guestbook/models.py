@@ -3,13 +3,18 @@
 from datetime import datetime
 from typing import List, Optional
 
+from pydantic import EmailStr
 from sqlmodel import SQLModel, Field, Relationship
 
 
 class UserBase(SQLModel):
     username: str
-    user_email: str
+    user_email: EmailStr
     user_full_name: Optional[str]
+
+    class Config:
+        min_anystr_length = 1
+        anystr_strip_whitespace = True
 
 
 class User(UserBase, table=True):
@@ -33,6 +38,10 @@ class NoteBase(SQLModel):
     note: str = Field(index=True)
     created_at: Optional[datetime] = datetime.now().strftime("%Y-%m-%d %H:%M:%S")
     user_id: Optional[int] = Field(default=None, foreign_key="user.id")
+
+    class Config:
+        min_anystr_length = 1
+        anystr_strip_whitespace = True
 
 
 class Note(NoteBase, table=True):
