@@ -1,6 +1,5 @@
 from guestbook.models import User, UserCreate
 from sqlmodel import Session, select
-from fastapi import HTTPException
 
 
 def get_user(session: Session, user_id: int) -> User:

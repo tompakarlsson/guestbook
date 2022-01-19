@@ -13,7 +13,7 @@ notes = APIRouter()
 
 
 @notes.get("/{note_id}", response_model=NoteRead)
-def read_note(note_id: str, session: Session = Depends(get_session)):
+def read_note(note_id: int, session: Session = Depends(get_session)):
     """read note specified by note_id"""
 
     return get_note(session=session, note_id=note_id)
@@ -39,7 +39,7 @@ def create_note(*, session: Session = Depends(get_session), note: NoteCreate):
 
 
 @notes.delete("/{note_id}")
-def delete_note(*, note_id: str, session: Session = Depends(get_session)):
+def delete_note(*, note_id: int, session: Session = Depends(get_session)):
     """Delete note"""
 
     note: NoteRead = get_note(session=session, note_id=note_id)
@@ -51,7 +51,7 @@ def delete_note(*, note_id: str, session: Session = Depends(get_session)):
     )
 
 @notes.patch("/{note_id}", response_model=NoteRead)
-def update_note(*, session: Session = Depends(get_session), note_id: str, note: NoteUpdate):
+def update_note(*, session: Session = Depends(get_session), note_id: int, note: NoteUpdate):
     """Update note"""
 
     return crud.notes.update_note(session=session, note=note, note_id=note_id)

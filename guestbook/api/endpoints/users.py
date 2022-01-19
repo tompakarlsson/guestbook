@@ -13,7 +13,7 @@ users = APIRouter()
 
 
 @users.get("/{user_id}", response_model=UserRead)
-def read_user(user_id: str, session: Session = Depends(get_session)):
+def read_user(user_id: int, session: Session = Depends(get_session)):
     """read user specified by user_id"""
 
     return get_user(session=session, user_id=user_id)
@@ -41,7 +41,7 @@ def create_user(user: UserCreate, session: Session = Depends(get_session)):
 
 
 @users.delete("/{user_id}")
-def delete_user(user_id: str, session: Session = Depends(get_session)):
+def delete_user(user_id: int, session: Session = Depends(get_session)):
     """Remove user"""
 
     user: User = get_user(session=session, user_id=user_id)
