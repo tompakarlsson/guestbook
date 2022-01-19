@@ -17,6 +17,8 @@ Run Uvicorn ASGI server from projects base directory:
 
 Go to http://127.9.9.1:8000/docs to test app with Swagger UI (automatic interactive API documentation)  
 
+There is no front end for this app yet. But all database and API functionality can be tested from previously mentioned Swagger UI
+
 ## Description
 A guestbook app using FastApi and SQLModel running on Uvicorn  
 
