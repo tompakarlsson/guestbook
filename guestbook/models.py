@@ -23,10 +23,6 @@ class User(UserBase, table=True):
     notes: List["Note"] = Relationship(back_populates="user")
 
 
-class UserCreate(UserBase):
-    pass
-
-
 class UserRead(UserBase):
     id: int
 
